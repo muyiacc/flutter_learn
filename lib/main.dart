@@ -8,17 +8,22 @@ import './pages/namedroute/home1.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.blue),
-
-      // 路由配置
+     // 路由配置
       // 初始化路由
       initialRoute: "/",
-      // 添加 routes
-      routes: {
+      // 定义 路由
+      Map routes: {
         "/" : (context) => HomePage(),
         "/circleoffriends" : (context) => CircleOfFriends(),
         "/collect" : (context) => Collect(),
