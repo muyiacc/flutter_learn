@@ -6,7 +6,6 @@ import './pages/discover.dart';
 import './pages/person.dart';
 import './pages/bigadd.dart';
 import './pages/search.dart';
-import './pages/news.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-
+      
       home: const MyHomePage(),
 
       // 去掉 debugg 提示
@@ -67,27 +66,15 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Text("Flutter App"),
         // 增加搜索按钮，使用普通路由跳转到新的页面
         actions: [
-          IconButton(
-              onPressed: () {
-                // 跳转路由
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (BuildContext context) {
-                  return const SearchPage();
-                }));
-              },
-              icon: const Icon(Icons.search)),
-          IconButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (BuildContext co) {
-                    return const NewsPage(str: "路由跳转传入的值");
-                  },
-                ),
-              );
-            },
-            icon: const Icon(Icons.newspaper),
-          ),
+          IconButton(onPressed: () {
+            // 跳转路由
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (BuildContext context){
+                return const SearchPage();
+              })
+            );
+          },
+          icon: const Icon(Icons.search))
         ],
       ),
 
