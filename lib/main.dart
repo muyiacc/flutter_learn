@@ -8,28 +8,48 @@ import './pages/namedroute/home1.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+class MyApp extends StatelessWidget {
+  // TODO 1. 定义 路由
+  Map routes = {
+    "/": (context) => HomePage(),
+    "/circleoffriends": (context) => CircleOfFriends(),
+    "/collect": (context) => Collect(),
+    "/mailbox": (context) => Mailbox(),
+    // "/nearby": (context, {arguments}) {
+    //   return Nearby(arguments: arguments);
+    // },
+    "/nearby": (context, {arguments}) => Nearby(arguments: arguments),
+    "/setting": (context) => Setting(),
+  };
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
+  MyApp({super.key});
 
-class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-     // 路由配置
-      // 初始化路由
+      title: "Flutter 路由跳转传值",
+
       initialRoute: "/",
-      // 定义 路由
-      Map routes: {
-        "/" : (context) => HomePage(),
-        "/circleoffriends" : (context) => CircleOfFriends(),
-        "/collect" : (context) => Collect(),
-        "/mailbox" : (context) => Mailbox(),
-        "/nearby" : (context) => Nearby(),
-        "/setting" : (context) => Setting(),
+
+      // TODO 2. 配置 onGenerateRoute 固定写法
+      onGenerateRoute: (RouteSettings settings) {
+        final String? name = settings.name;
+        final Function? pageContentBuilder = routes[name];
+        if (pageContentBuilder != null) {
+          if (settings.arguments != null) {
+            final Route route = MaterialPageRoute(
+              builder: (context) =>
+                  pageContentBuilder(context, arguments: settings.arguments),
+            );
+            return route;
+          } else {
+            final Route route = MaterialPageRoute(
+              builder: (context) => pageContentBuilder(context),
+            );
+            return route;
+          }
+        }
+        return null;
       },
     );
   }

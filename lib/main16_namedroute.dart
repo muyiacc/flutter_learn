@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         "/circleoffriends" : (context) => CircleOfFriends(),
         "/collect" : (context) => Collect(),
         "/mailbox" : (context) => Mailbox(),
-        "/nearby" : (context) => Nearby(),
+        // "/nearby" : (context) => Nearby(),
         "/setting" : (context) => Setting(),
       },
     );

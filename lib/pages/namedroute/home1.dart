@@ -41,6 +41,20 @@ class _HomePageState extends State<HomePage>
               },
               child: const Text("命名路由跳转至设置"),
             ),
+            const SizedBox(height: 20),
+            OutlinedButton(
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  "/nearby",
+                  arguments: {
+                    "title": "我是命名路由传值",
+                    "aid": 100,
+                  },
+                );
+              },
+              child: const Text("跳转到 附近 并传值 "),
+            ),
           ],
         ),
       ),
